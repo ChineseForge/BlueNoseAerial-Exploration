@@ -1,0 +1,3352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Nose Aerial - Pricing Intelligence Brief</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #12100d;
+            --bg-card: #1c1914;
+            --bg-card-hover: #231f19;
+            --bg-card-open: #1f1b15;
+            --bg-toc: #181510;
+            --amber: #c8943e;
+            --amber-bright: #daa74e;
+            --amber-dim: #8a6628;
+            --amber-glow: rgba(200, 148, 62, 0.08);
+            --amber-glow-hover: rgba(200, 148, 62, 0.14);
+            --text-primary: #e8dece;
+            --text-secondary: #a89a86;
+            --text-muted: #6d5f4e;
+            --text-heading: #f2ead8;
+            --border-warm: #2e2820;
+            --border-accent: #3d3224;
+            --shadow-warm: rgba(20, 16, 10, 0.5);
+            --shadow-warm-hover: rgba(20, 16, 10, 0.7);
+            --green-accent: #5a8a4a;
+            --green-bg: #1a2218;
+            --green-text: #8abf74;
+            --note-bg: #1a1815;
+            --note-border: #6d5f4e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 50px 24px 80px;
+        }
+
+        /* ========== HEADER ========== */
+        header {
+            padding-bottom: 40px;
+            margin-bottom: 48px;
+            border-bottom: 2px solid transparent;
+            position: relative;
+            transition: border-bottom-color 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        header.line-revealed {
+            border-bottom-color: var(--border-accent);
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 120px;
+            height: 2px;
+            background: var(--amber);
+            opacity: 0;
+            transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        header.line-revealed::after {
+            opacity: 1;
+        }
+
+        .header-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 3rem;
+            line-height: 1.05;
+            color: var(--text-heading);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 500;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+        }
+
+        .metadata {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ========== TABLE OF CONTENTS ========== */
+        .toc {
+            background: var(--bg-toc);
+            border: 1px solid var(--border-warm);
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 56px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .toc::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--amber), var(--amber-dim), transparent);
+        }
+
+        .toc-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--amber-dim);
+            margin-bottom: 20px;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .toc-item {
+            display: block;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 500;
+            font-size: 1.05rem;
+            letter-spacing: 0.3px;
+            transition: background 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .toc-item:hover {
+            background: var(--amber-glow);
+            color: var(--amber-bright);
+            transform: translateX(4px);
+        }
+
+        .toc-number {
+            color: var(--amber-dim);
+            font-weight: 700;
+            margin-right: 8px;
+            font-size: 0.9rem;
+        }
+
+        .toc-item:hover .toc-number {
+            color: var(--amber);
+        }
+
+        .toc-highlight {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .toc-highlight .toc-number {
+            color: var(--amber);
+        }
+
+        /* ========== SECTIONS ========== */
+        .section-block {
+            margin-bottom: 48px;
+        }
+
+        .section-header {
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-warm);
+            margin-bottom: 24px;
+            transition: border-color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .section-header:hover {
+            border-color: var(--amber-dim);
+        }
+
+        .section-header:hover h2 {
+            color: var(--amber-bright);
+        }
+
+        .section-number {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--amber);
+            background: var(--amber-glow);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        h2 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: var(--text-heading);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            flex-grow: 1;
+            transition: color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .chevron {
+            width: 20px;
+            height: 20px;
+            color: var(--text-muted);
+            transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+            flex-shrink: 0;
+        }
+
+        .section-header:hover .chevron {
+            color: var(--amber);
+        }
+
+        .section-block.open .chevron {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            opacity: 0;
+        }
+
+        .section-block.open .section-content {
+            opacity: 1;
+            overflow: visible;
+        }
+
+        h3 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--amber);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 28px;
+            margin-bottom: 14px;
+        }
+
+        h4 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            letter-spacing: 0.5px;
+            margin-top: 18px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 14px;
+            color: var(--text-primary);
+            font-weight: 300;
+            line-height: 1.75;
+        }
+
+        strong {
+            font-weight: 600;
+            color: var(--text-heading);
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-weight: 300;
+            line-height: 1.65;
+        }
+
+        li strong {
+            color: var(--amber);
+            font-weight: 600;
+        }
+
+        /* ========== PROFILE CARDS ========== */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .profile-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-warm);
+            border-radius: 12px;
+            padding: 18px 20px;
+            transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        box-shadow 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        border-color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        background 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--shadow-warm-hover);
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
+        }
+
+        .profile-card .card-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--amber-dim);
+            margin-bottom: 6px;
+        }
+
+        .profile-card .card-value {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 500;
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        /* Clickable link cards */
+        .profile-card.clickable {
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+        }
+
+        .profile-card.clickable:hover {
+            border-color: var(--amber-dim);
+        }
+
+        .profile-card.clickable:hover .card-value {
+            color: var(--amber-bright);
+        }
+
+        .profile-card.clickable:active {
+            transform: scale(0.97);
+        }
+
+        .link-arrow {
+            display: inline-block;
+            margin-left: 6px;
+            opacity: 0;
+            transform: translateX(-4px);
+            transition: opacity 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+            color: var(--amber);
+            font-size: 0.85em;
+        }
+
+        .profile-card.clickable:hover .link-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ========== DETAIL CARDS (inner collapsibles) ========== */
+        .detail-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-warm);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: border-color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        box-shadow 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .detail-card:hover {
+            border-color: var(--border-accent);
+            box-shadow: 0 4px 16px var(--shadow-warm);
+            transform: translateY(-1px);
+        }
+
+        .detail-header {
+            cursor: pointer;
+            user-select: none;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            transition: background 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .detail-header:hover {
+            background: var(--amber-glow);
+        }
+
+        .detail-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-primary);
+            letter-spacing: 0.3px;
+        }
+
+        .detail-header:hover .detail-title {
+            color: var(--amber-bright);
+        }
+
+        .detail-chevron {
+            width: 16px;
+            height: 16px;
+            color: var(--text-muted);
+            transition: transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+            flex-shrink: 0;
+        }
+
+        .detail-header:hover .detail-chevron {
+            color: var(--amber);
+        }
+
+        .detail-card.open .detail-chevron {
+            transform: rotate(180deg);
+        }
+
+        .detail-card.open {
+            border-color: var(--amber-dim);
+            background: var(--bg-card-open);
+        }
+
+        .detail-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+            opacity: 0;
+        }
+
+        .detail-card.open .detail-body {
+            opacity: 1;
+        }
+
+        .detail-body-inner {
+            padding: 0 20px 20px;
+        }
+
+        /* ========== TABLES ========== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.92rem;
+        }
+
+        th {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--amber);
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--amber-dim);
+        }
+
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border-warm);
+            color: var(--text-primary);
+            font-weight: 300;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr {
+            transition: background 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        tr:hover td {
+            background: var(--amber-glow);
+        }
+
+        /* ========== CALLOUT BOXES ========== */
+        .callout {
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 20px 0;
+            border-left: 3px solid;
+            position: relative;
+        }
+
+        .callout p {
+            margin-bottom: 8px;
+        }
+
+        .callout p:last-child {
+            margin-bottom: 0;
+        }
+
+        .callout-insight {
+            background: var(--note-bg);
+            border-color: var(--amber-dim);
+        }
+
+        .callout-insight .callout-label {
+            color: var(--amber);
+        }
+
+        .callout-opportunity {
+            background: var(--green-bg);
+            border-color: var(--green-accent);
+        }
+
+        .callout-opportunity .callout-label {
+            color: var(--green-text);
+        }
+
+        .callout-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .callout ul {
+            margin-left: 16px;
+            margin-bottom: 0;
+        }
+
+        /* ========== STAT BOXES ========== */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+            margin: 24px 0;
+        }
+
+        .stat-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-warm);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        box-shadow 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        border-color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--amber);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--shadow-warm-hover);
+            border-color: var(--amber-dim);
+        }
+
+        .stat-number {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 2.2rem;
+            color: var(--amber-bright);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 500;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        /* ========== HIGHLIGHT CHIP ========== */
+        .chip {
+            display: inline-block;
+            background: var(--amber-glow);
+            border: 1px solid var(--amber-dim);
+            color: var(--amber-bright);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+
+        /* ========== REFERENCE LINKS ========== */
+        .ref-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .ref-item {
+            display: block;
+            background: var(--bg-card);
+            border: 1px solid var(--border-warm);
+            border-radius: 12px;
+            padding: 14px 18px;
+            text-decoration: none;
+            transition: transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        box-shadow 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        border-color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        background 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .ref-item:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px var(--shadow-warm);
+            border-color: var(--amber-dim);
+            background: var(--bg-card-hover);
+        }
+
+        .ref-item:active {
+            transform: scale(0.98);
+        }
+
+        .ref-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--amber);
+            margin-bottom: 4px;
+        }
+
+        .ref-item:hover .ref-name {
+            color: var(--amber-bright);
+        }
+
+        .ref-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            margin-top: 64px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-warm);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.82rem;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            font-weight: 300;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 640px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.3rem; }
+            .toc-grid { grid-template-columns: 1fr; }
+            .profile-grid { grid-template-columns: 1fr; }
+            .ref-grid { grid-template-columns: 1fr; }
+            .stats-row { grid-template-columns: 1fr; }
+            .container { padding: 30px 16px 60px; }
+        }
+
+        /* ========== FEEDBACK: PENCIL BUTTONS (outside cards) ========== */
+        .detail-card-wrap {
+            position: relative;
+            overflow: visible;
+        }
+
+        .note-pencil {
+            position: absolute;
+            right: -44px;
+            top: 12px;
+            width: 32px;
+            height: 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-warm);
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.6;
+            transition: opacity 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        background 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        border-color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        transform 0.1s,
+                        box-shadow 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+            z-index: 2;
+        }
+
+        .note-pencil:hover {
+            opacity: 1;
+            background: var(--bg-card-hover);
+            border-color: var(--amber-dim);
+        }
+
+        .note-pencil:active {
+            transform: scale(0.95);
+        }
+
+        .note-pencil svg {
+            width: 15px;
+            height: 15px;
+            color: var(--amber);
+        }
+
+        /* Saved-note pulse */
+        @keyframes amberPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(200, 148, 62, 0); opacity: 0.5; }
+            50% { box-shadow: 0 0 12px 3px rgba(200, 148, 62, 0.3); opacity: 0.85; }
+        }
+
+        .note-pencil.has-note {
+            opacity: 0.5;
+            border-color: var(--amber-dim);
+            animation: amberPulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .note-pencil.has-note:hover {
+            animation: none;
+            opacity: 1;
+            box-shadow: 0 0 12px 3px rgba(200, 148, 62, 0.25);
+        }
+
+        .note-pencil.has-note svg {
+            color: var(--amber-bright);
+        }
+
+        /* ========== SCROLL REVEAL: IMPLODE ENTRANCE ========== */
+        .reveal {
+            opacity: 0;
+            transform: scale(1.08) translateY(10%);
+            filter: blur(8px);
+            transition: opacity 1s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        transform 1s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        filter 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+            will-change: opacity, transform, filter;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            filter: blur(0);
+        }
+
+        /* Lighter reveal for inline text elements (h3, p, ul) — less dramatic */
+        .section-content > h3.reveal,
+        .section-content > p.reveal,
+        .section-content > ul.reveal,
+        .section-content > ol.reveal {
+            transform: translateY(16px);
+            filter: blur(4px);
+            transition: opacity 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        filter 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .section-content > h3.reveal.revealed,
+        .section-content > p.reveal.revealed,
+        .section-content > ul.reveal.revealed,
+        .section-content > ol.reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        /* Responsive: tuck pencils inside on narrow screens */
+        @media (max-width: 960px) {
+            .note-pencil {
+                right: -4px;
+                top: -4px;
+                width: 28px;
+                height: 28px;
+            }
+            .note-pencil svg { width: 13px; height: 13px; }
+        }
+
+        /* ========== FEEDBACK: BOTTOM PANEL ========== */
+        .feedback-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 25vh;
+            min-height: 160px;
+            max-height: 60vh;
+            background: var(--bg-card);
+            border-top: 2px solid var(--amber-dim);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+            box-shadow: 0 -8px 40px rgba(10, 8, 6, 0.6);
+        }
+
+        .feedback-panel.open {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Drag handle */
+        .panel-drag {
+            height: 28px;
+            cursor: ns-resize;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: var(--bg-toc);
+            border-bottom: 1px solid var(--border-warm);
+        }
+
+        .panel-drag-bar {
+            width: 48px;
+            height: 4px;
+            border-radius: 2px;
+            background: var(--border-accent);
+            transition: background 0.2s;
+        }
+
+        .panel-drag:hover .panel-drag-bar {
+            background: var(--amber-dim);
+        }
+
+        /* Panel header */
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 24px;
+            flex-shrink: 0;
+            border-bottom: 1px solid var(--border-warm);
+        }
+
+        .panel-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--amber);
+        }
+
+        .panel-path {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 300;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-left: 12px;
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .panel-actions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .panel-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid var(--border-warm);
+            background: var(--bg-deep);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        border-color 0.2s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        transform 0.1s;
+        }
+
+        .panel-btn:active {
+            transform: scale(0.95);
+        }
+
+        .panel-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .panel-btn-save {
+            border-color: var(--green-accent);
+        }
+
+        .panel-btn-save svg {
+            color: var(--green-text);
+        }
+
+        .panel-btn-save:hover {
+            background: var(--green-bg);
+            border-color: var(--green-text);
+        }
+
+        .panel-btn-close svg {
+            color: var(--text-muted);
+        }
+
+        .panel-btn-close:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--text-muted);
+        }
+
+        /* Panel textarea */
+        .panel-body {
+            flex: 1;
+            padding: 12px 24px 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-body textarea {
+            width: 100%;
+            flex: 1;
+            background: var(--bg-deep);
+            border: 1px solid var(--border-warm);
+            border-radius: 8px;
+            padding: 14px 16px;
+            color: var(--text-primary);
+            font-family: 'Barlow', sans-serif;
+            font-weight: 300;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            resize: none;
+            outline: none;
+            transition: border-color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        box-shadow 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .panel-body textarea::placeholder {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .panel-body textarea:focus {
+            border-color: var(--amber-dim);
+            box-shadow: 0 0 0 3px var(--amber-glow);
+        }
+
+        /* ========== EXPORT BAR (floats when panel is closed) ========== */
+        .export-bar {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.4s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            pointer-events: none;
+        }
+
+        .export-bar.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .note-count {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            background: var(--bg-card);
+            border: 1px solid var(--border-warm);
+            border-radius: 20px;
+            padding: 8px 14px;
+        }
+
+        .export-btn {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--bg-deep);
+            background: var(--amber);
+            border: none;
+            border-radius: 12px;
+            padding: 12px 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        transform 0.1s;
+            box-shadow: 0 4px 16px rgba(200, 148, 62, 0.25);
+        }
+
+        .export-btn:hover {
+            background: var(--amber-bright);
+        }
+
+        .export-btn:active {
+            transform: scale(0.95);
+        }
+
+        .export-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .export-toast {
+            position: fixed;
+            bottom: 80px;
+            right: 24px;
+            background: var(--green-bg);
+            border: 1px solid var(--green-accent);
+            border-radius: 12px;
+            padding: 12px 20px;
+            color: var(--green-text);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            z-index: 2001;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+            pointer-events: none;
+        }
+
+        .export-toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== PANEL TRASH BUTTON ========== */
+        .panel-btn-trash svg {
+            color: #c25a5a;
+        }
+
+        .panel-btn-trash {
+            border-color: #5a2e2e;
+        }
+
+        .panel-btn-trash:hover {
+            background: #2a1515;
+            border-color: #c25a5a;
+        }
+
+        /* ========== NUKE BUTTON ========== */
+        .nuke-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 1px solid #5a2e2e;
+            background: var(--bg-card);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+            transition: background 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        border-color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        transform 0.1s;
+        }
+
+        .nuke-btn svg {
+            width: 24px;
+            height: 24px;
+            color: #c25a5a;
+        }
+
+        .nuke-btn:hover {
+            background: #2a1515;
+            border-color: #c25a5a;
+        }
+
+        .nuke-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* ========== NUKE CONFIRMATION OVERLAY ========== */
+        .nuke-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 8, 6, 0.85);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .nuke-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .nuke-modal {
+            background: var(--bg-card);
+            border: 1px solid var(--border-accent);
+            border-radius: 16px;
+            padding: 36px 32px 28px;
+            max-width: 400px;
+            text-align: center;
+            transform: scale(0.96) translateY(8px);
+            transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+            box-shadow: 0 16px 48px rgba(10, 8, 6, 0.6);
+        }
+
+        .nuke-overlay.open .nuke-modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .nuke-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+        }
+
+        .nuke-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .nuke-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #e05a5a;
+            margin-bottom: 12px;
+        }
+
+        .nuke-message {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 300;
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .nuke-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .nuke-cancel {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            background: var(--bg-deep);
+            border: 1px solid var(--border-warm);
+            border-radius: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, transform 0.1s;
+        }
+
+        .nuke-cancel:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--text-muted);
+        }
+
+        .nuke-cancel:active {
+            transform: scale(0.95);
+        }
+
+        .nuke-confirm {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #fff;
+            background: #8a2e2e;
+            border: 1px solid #c25a5a;
+            border-radius: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .nuke-confirm:hover {
+            background: #a03535;
+        }
+
+        .nuke-confirm:active {
+            transform: scale(0.95);
+        }
+
+        /* ========== NOTES HUB MODAL ========== */
+        .notes-hub-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 8, 6, 0.88);
+            z-index: 4000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .notes-hub-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .notes-hub {
+            width: 90vw;
+            height: 90vh;
+            max-width: 900px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-accent);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            transform: scale(0.96) translateY(12px);
+            transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            box-shadow: 0 24px 64px rgba(10, 8, 6, 0.7);
+            overflow: hidden;
+        }
+
+        .notes-hub-overlay.open .notes-hub {
+            transform: scale(1) translateY(0);
+        }
+
+        .notes-hub-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 28px 20px;
+            border-bottom: 1px solid var(--border-warm);
+            flex-shrink: 0;
+        }
+
+        .notes-hub-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--amber);
+        }
+
+        .notes-hub-subtitle {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 300;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-left: 12px;
+        }
+
+        .notes-hub-close {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--border-warm);
+            border-radius: 10px;
+            background: var(--bg-deep);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color 0.2s, color 0.2s, transform 0.1s;
+            flex-shrink: 0;
+        }
+
+        .notes-hub-close:hover {
+            border-color: var(--text-muted);
+            color: var(--text-primary);
+        }
+
+        .notes-hub-close:active {
+            transform: scale(0.95);
+        }
+
+        .notes-hub-close svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .notes-hub-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 28px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border-accent) transparent;
+        }
+
+        .notes-hub-body::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .notes-hub-body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .notes-hub-body::-webkit-scrollbar-thumb {
+            background: var(--border-accent);
+            border-radius: 3px;
+        }
+
+        .notes-hub-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--text-muted);
+            font-family: 'Barlow', sans-serif;
+            font-weight: 300;
+            font-size: 1rem;
+            text-align: center;
+            gap: 12px;
+        }
+
+        .notes-hub-empty svg {
+            width: 48px;
+            height: 48px;
+            opacity: 0.4;
+        }
+
+        .hub-note-card {
+            background: var(--bg-deep);
+            border: 1px solid var(--border-warm);
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-bottom: 14px;
+            transition: border-color 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .hub-note-card:hover {
+            border-color: var(--border-accent);
+        }
+
+        .hub-note-path {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--amber-dim);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hub-note-path-text {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .hub-note-goto {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.7rem;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--amber);
+            background: none;
+            border: 1px solid var(--amber-dim);
+            border-radius: 6px;
+            padding: 4px 10px;
+            cursor: pointer;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: background 0.2s, border-color 0.2s, transform 0.1s;
+        }
+
+        .hub-note-goto:hover {
+            background: rgba(200, 148, 62, 0.1);
+            border-color: var(--amber);
+        }
+
+        .hub-note-goto:active {
+            transform: scale(0.95);
+        }
+
+        .hub-note-textarea {
+            width: 100%;
+            min-height: 60px;
+            max-height: 200px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-warm);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'Barlow', sans-serif;
+            font-weight: 300;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            padding: 10px 12px;
+            resize: vertical;
+            transition: border-color 0.2s;
+        }
+
+        .hub-note-textarea:focus {
+            outline: none;
+            border-color: var(--amber-dim);
+        }
+
+        .hub-note-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .hub-note-save {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--bg-deep);
+            background: var(--amber);
+            border: none;
+            border-radius: 8px;
+            padding: 7px 16px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .hub-note-save:hover {
+            background: var(--amber-bright);
+        }
+
+        .hub-note-save:active {
+            transform: scale(0.95);
+        }
+
+        .hub-note-delete {
+            width: 30px;
+            height: 30px;
+            background: none;
+            border: 1px solid var(--border-warm);
+            border-radius: 8px;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color 0.2s, color 0.2s, transform 0.1s;
+        }
+
+        .hub-note-delete:hover {
+            border-color: #c04040;
+            color: #e05555;
+        }
+
+        .hub-note-delete:active {
+            transform: scale(0.95);
+        }
+
+        .hub-note-delete svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .hub-note-saved-flash {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 500;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            color: var(--green-text);
+            opacity: 0;
+            transition: opacity 0.3s;
+            margin-right: 4px;
+        }
+
+        .hub-note-saved-flash.show {
+            opacity: 1;
+        }
+
+        .notes-hub-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 28px;
+            border-top: 1px solid var(--border-warm);
+            flex-shrink: 0;
+        }
+
+        .hub-export-btn {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--bg-deep);
+            background: var(--amber);
+            border: none;
+            border-radius: 10px;
+            padding: 10px 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 16px rgba(200, 148, 62, 0.2);
+        }
+
+        .hub-export-btn:hover {
+            background: var(--amber-bright);
+        }
+
+        .hub-export-btn:active {
+            transform: scale(0.95);
+        }
+
+        .hub-export-btn svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .hub-nuke-btn {
+            width: 36px;
+            height: 36px;
+            background: none;
+            border: 1px solid var(--border-warm);
+            border-radius: 10px;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color 0.2s, color 0.2s, transform 0.1s;
+        }
+
+        .hub-nuke-btn:hover {
+            border-color: #c04040;
+            color: #e05555;
+        }
+
+        .hub-nuke-btn:active {
+            transform: scale(0.95);
+        }
+
+        .hub-nuke-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Make note-count clickable when notes exist */
+        .note-count.clickable {
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s, transform 0.1s;
+        }
+
+        .note-count.clickable:hover {
+            border-color: var(--amber-dim);
+            color: var(--text-primary);
+        }
+
+        .note-count.clickable:active {
+            transform: scale(0.95);
+        }
+
+        @media (max-width: 600px) {
+            .notes-hub {
+                width: 96vw;
+                height: 94vh;
+                border-radius: 12px;
+            }
+
+            .notes-hub-header {
+                padding: 18px 16px 14px;
+            }
+
+            .notes-hub-body {
+                padding: 14px 16px;
+            }
+
+            .notes-hub-footer {
+                padding: 12px 16px;
+            }
+
+            .notes-hub-subtitle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- HEADER -->
+        <header>
+            <div class="header-label">Pricing Intelligence Brief</div>
+            <h1>Blue Nose Aerial Imaging</h1>
+            <div class="subtitle">A Market Research & Pricing Strategy Framework for Billy Merop</div>
+            <div class="metadata">Prepared April 7, 2026 &mdash; Exploratory Research Phase</div>
+        </header>
+
+        <!-- TABLE OF CONTENTS -->
+        <nav class="toc">
+            <div class="toc-label">Navigate</div>
+            <div class="toc-grid">
+                <a href="#s1" class="toc-item" data-section="s1"><span class="toc-number">01</span> Your Profile</a>
+                <a href="#s2" class="toc-item toc-highlight" data-section="s2"><span class="toc-number">02</span> The Pricing Problem</a>
+                <a href="#s3" class="toc-item toc-highlight" data-section="s3"><span class="toc-number">03</span> Cost Taxonomy</a>
+                <a href="#s4" class="toc-item" data-section="s4"><span class="toc-number">04</span> Pricing Benchmarks</a>
+                <a href="#s5" class="toc-item toc-highlight" data-section="s5"><span class="toc-number">05</span> Legislation Landscape</a>
+                <a href="#s6" class="toc-item toc-highlight" data-section="s6"><span class="toc-number">06</span> Retainer Revenue</a>
+                <a href="#s7" class="toc-item" data-section="s7"><span class="toc-number">07</span> Databases & Sources</a>
+                <a href="#s8" class="toc-item" data-section="s8"><span class="toc-number">08</span> Next Steps</a>
+            </div>
+        </nav>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 1: PROFILE -->
+        <!-- ============================================================ -->
+        <div class="section-block" id="s1">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-number">01</div>
+                <h2>Your Profile</h2>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="section-content">
+
+                <div class="profile-grid">
+                    <div class="profile-card">
+                        <div class="card-label">Full Name</div>
+                        <p class="card-value">William "Billy" Merop</p>
+                    </div>
+                    <div class="profile-card">
+                        <div class="card-label">Company</div>
+                        <p class="card-value">Blue Nose Aerial Imaging</p>
+                    </div>
+                    <div class="profile-card">
+                        <div class="card-label">Location</div>
+                        <p class="card-value">Cleveland, TN / Chattanooga</p>
+                    </div>
+                    <a href="https://bluenoseaerial.com" target="_blank" rel="noopener" class="profile-card clickable">
+                        <div class="card-label">Website</div>
+                        <p class="card-value">bluenoseaerial.com <span class="link-arrow">&rarr;</span></p>
+                    </a>
+                    <a href="https://www.linkedin.com/in/williammerop" target="_blank" rel="noopener" class="profile-card clickable">
+                        <div class="card-label">LinkedIn</div>
+                        <p class="card-value">linkedin.com/in/williammerop <span class="link-arrow">&rarr;</span></p>
+                    </a>
+                    <div class="profile-card">
+                        <div class="card-label">Network</div>
+                        <p class="card-value">689 followers, 500+ connections</p>
+                    </div>
+                </div>
+
+                <h3>Primary Services</h3>
+                <p>Surveying, mapping, and aerial imaging for construction and infrastructure projects. You specialize in thermal drone inspections, earthwork estimating, safety compliance documentation, and project cost management through aerial data analysis.</p>
+
+                <h3>Education</h3>
+                <p>American Military University (2011-2015), GPA 3.88. Additional coursework completed 2025.</p>
+
+                <h3>Certifications</h3>
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">View All Certifications</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <ul>
+                                <li><strong>FAA Part 107</strong> &mdash; March 2025 (ID: 5167364). Your federal license to operate commercial drones.</li>
+                                <li><strong>CHST (Construction Health & Safety Technician)</strong> &mdash; June 2022, expires Sept 2028. High-value credential for construction site access and credibility.</li>
+                                <li><strong>Level I Thermographer</strong> &mdash; Clemson University, July 2025. Qualifies you for advanced thermal inspection work.</li>
+                                <li><strong>BPERP</strong> &mdash; Airborne Public Safety Association, June 2025. Relevant for emergency response and public safety operations.</li>
+                                <li><strong>Drones for Environmental Science</strong> &mdash; Duke University/Coursera, March 2026. Demonstrates cross-domain technical capability.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callout callout-insight">
+                    <div class="callout-label">Key Insight</div>
+                    <p>Your credential stack is unusually strong. The CHST combined with FAA Part 107 and thermography creates a combination most competitors simply don't have. The environmental science cert (completed just last month) signals you're actively investing in capability expansion. This matters for positioning.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 2: THE PRICING PROBLEM -->
+        <!-- ============================================================ -->
+        <div class="section-block" id="s2">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-number">02</div>
+                <h2>The Pricing Problem</h2>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="section-content">
+
+                <p>You're navigating several interconnected challenges that make pricing difficult. Here's how they interact:</p>
+
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Market Ignorance Exploitation</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <p>Competitors are leveraging client ignorance to inflate margins well above fair market rates. Without a clear understanding of true cost structures, your clients can't distinguish between fair pricing and exploitative pricing. This creates an opening: if you can show clients the real math, you become the trusted option.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Equipment Cost Dualism (US vs. Chinese)</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <p>The US vs. Chinese drone legislation creates a two-tier equipment market. Chinese drones (DJI) are cheaper but increasingly restricted for federal-adjacent work. US-made alternatives carry a significant price premium. This directly affects your capital requirements and hourly cost allocation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Federal Funding Trigger (NDAA)</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <p>NDAA rules require US-made drones for any work touching federal money. This creates both a barrier for competitors still on Chinese equipment AND a competitive moat for you if your fleet is compliant. More on this in Section 5.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Enterprise Contract Accuracy</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <p>At the enterprise scale you're operating at ($200K-$300K contracts), a 10% pricing error means $25K left on the table or $25K in lost margin. Accurate cost accounting isn't optional at this level -- it's the difference between a good year and a bad one.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Revenue Predictability Gap</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <p>Without stable recurring revenue, growth planning becomes guesswork. Retainer models create both cash flow predictability and deeper client relationships. Section 6 digs into how to build this out.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callout callout-opportunity">
+                    <div class="callout-label">The Opportunity</div>
+                    <p>You need a pricing framework that accurately reflects your true costs, accounts for regulatory complexity, positions you to capture premium pricing for NDAA-compliant work, and builds stable recurring revenue underneath everything else.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 3: COST TAXONOMY -->
+        <!-- ============================================================ -->
+        <div class="section-block" id="s3">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-number">03</div>
+                <h2>Cost Taxonomy</h2>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="section-content">
+
+                <p>Every factor that goes into a job price. If a cost isn't accounted for here, it's eating your margin.</p>
+
+                <h3>A. Equipment (Capital Depreciation)</h3>
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Drone Equipment Costs & Depreciation</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <table>
+                                <tr><th>Equipment Class</th><th>Price Range</th><th>Depreciation/Hr</th><th>Notes</th></tr>
+                                <tr><td>Consumer</td><td>$500 - $2,000</td><td>~$5/hr</td><td>Limited professional use</td></tr>
+                                <tr><td>Enterprise (Survey)</td><td>$5K - $15K</td><td>$15 - $50/hr</td><td>Standard commercial work</td></tr>
+                                <tr><td>Enterprise + LiDAR</td><td>$15K - $50K+</td><td>$50+/hr</td><td>High-precision 3D mapping</td></tr>
+                            </table>
+                            <h4>Depreciation Formula</h4>
+                            <p>Purchase Price / 3 years / 1,000 hrs = hourly depreciation. Example: $10,000 drone = $3.33/hr.</p>
+                            <h4>US-Made (NDAA-Compliant)</h4>
+                            <ul>
+                                <li><strong>Skydio 2+:</strong> $1,099 - $2,169 (prosumer)</li>
+                                <li><strong>Skydio X10:</strong> $7,990 (enterprise survey-grade)</li>
+                            </ul>
+                            <h4>Chinese (For Reference)</h4>
+                            <ul>
+                                <li><strong>Autel EVO II Dual 640T V3:</strong> $5,299 (not NDAA-compliant post Dec 2025)</li>
+                                <li><strong>DJI:</strong> Effectively banned for federal work</li>
+                            </ul>
+                            <p>Import duties on drones now range <span class="chip">25% - 100%</span> depending on classification.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>B. Insurance (Annual Fixed)</h3>
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Annual Insurance Breakdown</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <ul>
+                                <li><strong>Commercial Liability:</strong> $1,500 - $3,000/year</li>
+                                <li><strong>Hull Coverage ($10K airframe):</strong> ~$1,000/year</li>
+                                <li><strong>Payload Coverage ($7K):</strong> $400 - $800/year</li>
+                                <li><strong>Typical Total:</strong> <span class="chip">$2,050 - $2,800/year</span></li>
+                            </ul>
+                            <p>Total fixed costs before flying a single job: $3,500 - $7,000/year for a well-equipped solo operation. Divide by estimated billable hours to get your per-hour insurance allocation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>C. Labor</h3>
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Pilot Rate Benchmarks</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <h4>Full-Time Employed</h4>
+                            <p>Average: $46 - $63/hr ($95K - $131K/year)</p>
+                            <h4>Freelance Part 107 (By Specialization)</h4>
+                            <table>
+                                <tr><th>Service</th><th>Rate</th></tr>
+                                <tr><td>Real Estate Photography</td><td>$150 - $250/hr</td></tr>
+                                <tr><td>Infrastructure Inspection</td><td>$200 - $350/hr</td></tr>
+                                <tr><td>Film Production</td><td>$300 - $500/hr</td></tr>
+                                <tr><td>Energy/Power Line</td><td>~$96K/yr avg (highest specialty)</td></tr>
+                            </table>
+                            <p>BLS projects drone jobs to outpace most occupations in growth -- upward pressure on rates.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>D. Software & Post-Processing</h3>
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Post-Processing Cost Structure</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <p>Post-processing adds <span class="chip">15 - 40%</span> to overall job costs. A 2-hour flight can generate 8+ hours of processing work.</p>
+                            <ul>
+                                <li><strong>Subscription Platforms:</strong> $100 - $500/month (unlimited processing)</li>
+                                <li><strong>Per-Model Fees:</strong> $99 - $199 per 3D model or orthomosaic</li>
+                                <li><strong>Software Licenses:</strong> ~$250/month (CAD, GIS, analysis tools)</li>
+                                <li><strong>Cloud Storage & Drives:</strong> Variable by volume and retention needs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>E. Regulatory & Compliance</h3>
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Compliance & Administrative Burden</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <ul>
+                                <li><strong>FAA Part 107:</strong> Initial cert + renewal every 24 months</li>
+                                <li><strong>Part 107 Waivers:</strong> No fee, but 90+ day processing (opportunity cost)</li>
+                                <li><strong>Airspace Auth:</strong> Required for Class B, C, D, E controlled airspace</li>
+                                <li><strong>NDAA Compliance:</strong> Documentation required for federal-adjacent work</li>
+                            </ul>
+                            <p>The hidden cost: time spent on waivers, compliance paperwork, regulatory research. Many operators underestimate this. Your CHST certification gives you an edge here -- you already understand construction site safety requirements better than most drone operators.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>F. Travel & Logistics</h3>
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Transportation & Field Costs</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <ul>
+                                <li><strong>Vehicle Lease/Maintenance:</strong> ~$600/month</li>
+                                <li><strong>Fuel & Mileage:</strong> Variable by job distance</li>
+                                <li><strong>Per Diem (Multi-Day):</strong> $50 - $150/day</li>
+                                <li><strong>Equipment Setup Time:</strong> 30 - 60 min per site</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>G. Overhead</h3>
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Monthly Operating Overhead</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <ul>
+                                <li><strong>Office Space:</strong> ~$2,500/month (or home equivalent)</li>
+                                <li><strong>Marketing:</strong> ~$1,667/month ($20K/year)</li>
+                                <li><strong>Accounting & Legal:</strong> ~$750/month</li>
+                                <li><strong>Utilities:</strong> ~$400/month</li>
+                                <li><strong>Customer Acquisition Cost:</strong> ~$500 per client</li>
+                            </ul>
+                            <p>Total monthly overhead baseline: ~$5,300/month ($63,800/year). For 1,000 billable hours/year, that's ~$64/hour overhead allocation on every job.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callout callout-insight">
+                    <div class="callout-label">The Full Picture</div>
+                    <p>Your all-in hourly cost: equipment depreciation ($10-40/hr) + insurance ($2-5/hr) + labor ($20-30/hr as solo) + overhead ($50-70/hr) + post-processing (15-40% of job cost) + travel + compliance admin. Any hourly rate that doesn't account for all of these is leaving money on the table or losing money outright.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 4: PRICING BENCHMARKS -->
+        <!-- ============================================================ -->
+        <div class="section-block" id="s4">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-number">04</div>
+                <h2>Pricing Benchmarks</h2>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="section-content">
+
+                <h3>Surveying & Mapping (Your Primary Service)</h3>
+
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Per-Acre Pricing</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <table>
+                                <tr><th>Service</th><th>Per Acre</th><th>Project Size</th><th>Notes</th></tr>
+                                <tr><td>Photogrammetry (Standard)</td><td>$150 - $300</td><td>Under 10 acres</td><td>Small site surveys</td></tr>
+                                <tr><td>Large-Area Photogrammetry</td><td>As low as $1.50</td><td>500+ acres</td><td>Volume economics</td></tr>
+                                <tr><td>LiDAR (Standard)</td><td>$150 - $500</td><td>Varies</td><td>Point density dependent</td></tr>
+                                <tr><td>High-Density Point Clouds</td><td>$400 - $500</td><td>Varies</td><td>Premium precision work</td></tr>
+                                <tr><td>2D Planimetrics</td><td>$20 (min $500)</td><td>Varies</td><td>Orthomosaic + measurements</td></tr>
+                                <tr><td>3D Planimetrics</td><td>$25+ (min $750)</td><td>Varies</td><td>3D modeling</td></tr>
+                            </table>
+                            <h4>Example: 50-Acre Mapping Project</h4>
+                            <p>Low end: 50 acres x $150 = <span class="chip">$7,500</span></p>
+                            <p>High end: 50 acres x $300 = <span class="chip">$15,000</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Hourly Rates for Survey Work</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <table>
+                                <tr><th>Service</th><th>Hourly Rate</th></tr>
+                                <tr><td>Construction/Surveying</td><td>$250 - $600/hr</td></tr>
+                                <tr><td>LiDAR Surveying</td><td>$300 - $1,000/hr</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Other Services (Comparison)</h3>
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Alternative Service Pricing</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <table>
+                                <tr><th>Service</th><th>Model</th><th>Rate</th></tr>
+                                <tr><td>Aerial Photography</td><td>Hourly</td><td>$150 - $400/hr</td></tr>
+                                <tr><td>Roof/Building Inspections</td><td>Hourly/Property</td><td>$200 - $500/hr or ~$250/property</td></tr>
+                                <tr><td>Thermal/Infrared</td><td>Hourly</td><td>$300 - $700/hr</td></tr>
+                                <tr><td>Construction Progress</td><td>Per Visit</td><td>$300 - $450/visit</td></tr>
+                                <tr><td>Solar Inspection</td><td>Per Project</td><td>~$800</td></tr>
+                                <tr><td>Agriculture NDVI</td><td>Per Acre</td><td>$10/acre</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Pricing Models</h3>
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Per-Hour, Per-Acre, Per-Deliverable</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <p><strong>Per-Hour:</strong> Most common for photography, videography, and time-sensitive work. Easy to quote but clients sometimes balk at high rates without understanding the cost structure.</p>
+                            <p><strong>Per-Acre:</strong> Natural fit for your mapping and surveying work. Predictable for both sides. Just make sure small projects have minimum fees to stay profitable.</p>
+                            <p><strong>Per-Deliverable:</strong> Growing model for data-intensive work. Charges for outcomes (3D models, orthomosaics, reports) rather than time. This is where the highest margins live -- but requires clear scope definition.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callout callout-opportunity">
+                    <div class="callout-label">Your Position</div>
+                    <p>Your primary work (surveying/mapping) fits per-acre pricing naturally. Your thermal cert opens hourly work. As you build recurring relationships, retainer pricing (Section 6) becomes the third leg of the stool.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 5: LEGISLATION -->
+        <!-- ============================================================ -->
+        <div class="section-block" id="s5">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-number">05</div>
+                <h2>Legislation Landscape</h2>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="section-content">
+
+                <p>The regulatory environment fundamentally changed on December 22, 2025. Understanding this is critical to your pricing strategy and competitive positioning.</p>
+
+                <h3>The NDAA Timeline</h3>
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">What Happened and Why It Matters</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <ul>
+                                <li><strong>FY2025 NDAA:</strong> Required a security audit of DJI within 1 year</li>
+                                <li><strong>Dec 22, 2025:</strong> Audit never completed. DJI added to FCC Covered List</li>
+                                <li><strong>FCC Went Broader:</strong> ALL foreign-manufactured drones and critical components added -- not just DJI</li>
+                                <li><strong>Retroactive Power:</strong> FCC can revoke previously certified devices</li>
+                                <li><strong>Loopholes Closed:</strong> "Clone" rebranding strategies explicitly prohibited</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Current Equipment Status</h3>
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">What's Allowed vs. Restricted</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <h4>Existing DJI Drones</h4>
+                            <ul>
+                                <li>Still physically flyable under Part 107 (no FAA grounding)</li>
+                                <li>CANNOT be used on federally funded projects</li>
+                                <li>No new imports or sales</li>
+                            </ul>
+                            <h4>US-Made / NDAA-Compliant</h4>
+                            <ul>
+                                <li>Can be used on ANY project, including federal</li>
+                                <li>Premium pricing justified by market access</li>
+                                <li>Higher capital cost, but unlocks revenue your competitors can't touch</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>The Federal Funding Trigger</h3>
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">What Counts as "Federal Funding"</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <p>ANY federal money in the pipeline triggers NDAA compliance:</p>
+                            <ul>
+                                <li>Federal grants</li>
+                                <li>Highway funding</li>
+                                <li>FEMA funding</li>
+                                <li>Infrastructure grants (IIJA, etc.)</li>
+                                <li>Any government-adjacent project receiving federal dollars</li>
+                            </ul>
+                            <p>When triggered: must use US-made drones, ground control, and comms equipment. No exceptions. Not a gray area.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callout callout-opportunity">
+                    <div class="callout-label">Your Competitive Advantage</div>
+                    <ul>
+                        <li>Competitors using DJI are locked out of federal/grant-funded work -- a growing market segment</li>
+                        <li>A US-made fleet justifies premium pricing on government and grant-funded projects</li>
+                        <li>Your CHST + thermography certs position you for construction and infrastructure (heavy federal funding flows)</li>
+                        <li>This regulatory advantage compounds over time as infrastructure spending increases</li>
+                        <li>The equipment investment pays for itself through market access your competitors can't match</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 6: RETAINER REVENUE -->
+        <!-- ============================================================ -->
+        <div class="section-block" id="s6">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-number">06</div>
+                <h2>Retainer Revenue</h2>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="section-content">
+
+                <p>Project-based work is unpredictable. Monthly retainers create the stability you need to plan, hire, and grow.</p>
+
+                <div class="stats-row">
+                    <div class="stat-box">
+                        <div class="stat-number">37%</div>
+                        <div class="stat-label">Higher Client Retention</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">3x</div>
+                        <div class="stat-label">Lifetime Customer Value</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">8 mo</div>
+                        <div class="stat-label">Typical Breakeven</div>
+                    </div>
+                </div>
+
+                <h3>Construction Site Monitoring</h3>
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">The Retainer Model</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <h4>Typical Structure</h4>
+                            <ul>
+                                <li><strong>Monthly Retainer:</strong> $1,500 - $5,000 per active site</li>
+                                <li><strong>Frequency:</strong> Weekly or biweekly flights</li>
+                                <li><strong>Portfolio Capacity:</strong> Solo operator can manage 5-10 active contracts</li>
+                            </ul>
+                            <h4>The Math</h4>
+                            <p>5 sites x $2,500/month x 12 = <span class="chip">$150,000/year</span></p>
+                            <p>10 sites x $2,500/month x 12 = <span class="chip">$300,000/year</span></p>
+                            <h4>Per-Visit Alternative</h4>
+                            <p>$500 - $2,000 per visit. Retainer clients get the lower end (~$500-750/visit) vs. $1,500-2,000 for one-off flights. The discount is worth it for the predictability.</p>
+                            <p><strong>Target clients:</strong> Construction companies, property managers, utility companies, municipal governments.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Growth Path</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <p>Minimum monthly burn for operations: ~$19,425 (with small team) or significantly less as solo.</p>
+                            <table>
+                                <tr><th>Timeline</th><th>Retainer Clients</th><th>Revenue Range</th></tr>
+                                <tr><td>Months 1-3</td><td>1-2 + project work</td><td>$25K - $40K</td></tr>
+                                <tr><td>Months 4-6</td><td>3-4 + project work</td><td>$45K - $70K</td></tr>
+                                <tr><td>Months 7-9</td><td>5-6 + project work</td><td>$65K - $100K</td></tr>
+                                <tr><td>Months 10-12</td><td>7-10 + project work</td><td>$100K - $150K</td></tr>
+                            </table>
+                            <p>Year 2 with established retainers: $300K - $400K revenue potential as a solo operator.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callout callout-opportunity">
+                    <div class="callout-label">The Play</div>
+                    <p>Target construction companies in the Chattanooga market with weekly site monitoring. Position it as an "insurance policy for project costs" -- weekly flights create accountability, prevent disputes, and generate the recurring revenue that lets you plan ahead. 7-8 retainer clients at $2,500/month = $105K-$120K in predictable annual revenue.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 7: DATABASES & SOURCES -->
+        <!-- ============================================================ -->
+        <div class="section-block" id="s7">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-number">07</div>
+                <h2>Databases & Sources</h2>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="section-content">
+
+                <p>These resources provide continuous market data, competitive intelligence, and regulatory updates. Building a 2-3 hour monthly research habit here creates a knowledge edge.</p>
+
+                <div class="ref-grid">
+                    <a href="https://bls.gov" target="_blank" rel="noopener" class="ref-item">
+                        <div class="ref-name">Bureau of Labor Statistics</div>
+                        <p class="ref-desc">Wage data, occupational outlook, industry trends</p>
+                    </a>
+                    <a href="https://dronelist.io/tools/drone-pricing-calculator" target="_blank" rel="noopener" class="ref-item">
+                        <div class="ref-name">DroneList.io Calculator</div>
+                        <p class="ref-desc">Free job pricing estimation tool</p>
+                    </a>
+                    <a href="https://www.dronedeploy.com" target="_blank" rel="noopener" class="ref-item">
+                        <div class="ref-name">DroneDeploy</div>
+                        <p class="ref-desc">Mapping services pricing, benchmarks</p>
+                    </a>
+                    <a href="https://uavcoach.com" target="_blank" rel="noopener" class="ref-item">
+                        <div class="ref-name">UAV Coach</div>
+                        <p class="ref-desc">Pricing guides, DJI alternatives, salary data</p>
+                    </a>
+                    <a href="https://www.thedroneu.com" target="_blank" rel="noopener" class="ref-item">
+                        <div class="ref-name">Drone U</div>
+                        <p class="ref-desc">Cost guides, business training, pricing strategies</p>
+                    </a>
+                    <a href="https://www.skyebrowse.com" target="_blank" rel="noopener" class="ref-item">
+                        <div class="ref-name">SkyeBrowse</div>
+                        <p class="ref-desc">Pricing benchmarks by service type</p>
+                    </a>
+                    <a href="https://faadronezone.faa.gov" target="_blank" rel="noopener" class="ref-item">
+                        <div class="ref-name">FAA DroneZone</div>
+                        <p class="ref-desc">Waiver status, airspace auth, compliance</p>
+                    </a>
+                    <a href="https://www.droneii.com" target="_blank" rel="noopener" class="ref-item">
+                        <div class="ref-name">Drone Industry Insights</div>
+                        <p class="ref-desc">Market reports, industry statistics</p>
+                    </a>
+                    <a href="https://www.commercialdronepilots.com" target="_blank" rel="noopener" class="ref-item">
+                        <div class="ref-name">Commercial Drone Pilots Forum</div>
+                        <p class="ref-desc">Peer pricing discussions, real operator data</p>
+                    </a>
+                    <a href="https://www.jouav.com" target="_blank" rel="noopener" class="ref-item">
+                        <div class="ref-name">JOUAV</div>
+                        <p class="ref-desc">Insurance guides, business startup resources</p>
+                    </a>
+                    <a href="https://www.thefuture3d.com" target="_blank" rel="noopener" class="ref-item">
+                        <div class="ref-name">The Future 3D</div>
+                        <p class="ref-desc">Survey/LiDAR specific pricing guides</p>
+                    </a>
+                    <a href="https://www.associationfordrones.com" target="_blank" rel="noopener" class="ref-item">
+                        <div class="ref-name">Association for Drones</div>
+                        <p class="ref-desc">Pricing strategies, industry best practices</p>
+                    </a>
+                    <a href="https://suasnews.com" target="_blank" rel="noopener" class="ref-item">
+                        <div class="ref-name">sUAS News</div>
+                        <p class="ref-desc">Regulatory updates, ban tracking</p>
+                    </a>
+                    <a href="https://flightbrief.news" target="_blank" rel="noopener" class="ref-item">
+                        <div class="ref-name">Flight Brief</div>
+                        <p class="ref-desc">NDAA compliance guides, equipment reviews</p>
+                    </a>
+                    <a href="https://www.payscale.com" target="_blank" rel="noopener" class="ref-item">
+                        <div class="ref-name">PayScale / ZipRecruiter</div>
+                        <p class="ref-desc">Real-time salary and rate data</p>
+                    </a>
+                    <a href="https://www.glassdoor.com" target="_blank" rel="noopener" class="ref-item">
+                        <div class="ref-name">Glassdoor</div>
+                        <p class="ref-desc">Salary benchmarks, company reviews</p>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 8: NEXT STEPS -->
+        <!-- ============================================================ -->
+        <div class="section-block" id="s8">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-number">08</div>
+                <h2>Next Steps</h2>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="section-content">
+
+                <p>To move from research to actionable strategy, these are the questions that need answers:</p>
+
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Equipment & Asset Inventory</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <ul>
+                                <li>What specific drone hardware do you currently own?</li>
+                                <li>Which models, purchase dates, current condition?</li>
+                                <li>Is any of your equipment NDAA-compliant?</li>
+                                <li>What's your timeline for transitioning to US-made?</li>
+                                <li>Do you have LiDAR equipment?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Current Pricing & Revenue</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <ul>
+                                <li>What's your current pricing methodology?</li>
+                                <li>Hourly, per-acre, or per-deliverable?</li>
+                                <li>Average project size and typical revenue per engagement?</li>
+                                <li>Any retainer/subscription clients currently?</li>
+                                <li>Monthly, quarterly, and annual revenue figures?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Competitive Position</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <ul>
+                                <li>Who are you losing bids to, and at what prices?</li>
+                                <li>What's driving the losses (price, capability, relationships)?</li>
+                                <li>Are competitors still using DJI on federal-adjacent work?</li>
+                                <li>What are your win rates on proposals?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Federal & Grant Work</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <ul>
+                                <li>Do you currently have any federal or grant-funded contracts?</li>
+                                <li>Are you aware of the NDAA ban's full impact on your competitors?</li>
+                                <li>What's your capacity to pursue federal-adjacent work?</li>
+                                <li>Specific government agencies or contractors in Chattanooga to target?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Operations & Software</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <ul>
+                                <li>What software stack for post-processing?</li>
+                                <li>Data processing capacity and turnaround time?</li>
+                                <li>How much time goes to biz dev vs. operations?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-header" onclick="toggleDetail(this)">
+                        <span class="detail-title">Business Goals</span>
+                        <svg class="detail-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-body-inner">
+                            <ul>
+                                <li>Revenue targets for the next 12, 24, 36 months?</li>
+                                <li>Planning to scale to multiple pilots or stay solo?</li>
+                                <li>Longer-term vision (exit, growth, lifestyle)?</li>
+                                <li>Interest in a pricing tool, consulting engagement, or both?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callout callout-insight">
+                    <div class="callout-label">What Comes Next</div>
+                    <p>The research in this document establishes the landscape. Your answers to the questions above determine the tactical execution -- a customized pricing framework, equipment strategy roadmap, and go-to-market plan built specifically for Blue Nose Aerial.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FEEDBACK BOTTOM PANEL -->
+        <div class="feedback-panel" id="feedbackPanel">
+            <div class="panel-drag" id="panelDrag">
+                <div class="panel-drag-bar"></div>
+            </div>
+            <div class="panel-header">
+                <span class="panel-title">Note</span>
+                <span class="panel-path" id="panelPath"></span>
+                <div class="panel-actions">
+                    <button class="panel-btn panel-btn-trash" id="panelTrash" title="Delete this note">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.75 6.167c0-.46.345-.834.771-.834h2.665c.529-.014.996-.378 1.176-.916l.03-.095.115-.372c.07-.228.131-.427.217-.605.338-.702.964-1.189 1.687-1.314.183-.031.377-.031.6-.031h3.478c.222 0 .416 0 .6.031.723.125 1.349.612 1.687 1.314.086.178.147.377.217.605l.115.372.03.095c.18.538.739.902 1.269.917h2.571c.426 0 .771.373.771.833s-.345.834-.771.834H3.521c-.426 0-.771-.374-.771-.834Z" fill="currentColor"/><path opacity=".7" d="M11.607 22h.786c2.708 0 4.062 0 4.942-.863.88-.864.97-2.28 1.15-5.111l.26-4.081c.098-1.536.147-2.305-.294-2.791-.442-.487-1.188-.487-2.679-.487H8.23c-1.491 0-2.237 0-2.679.487-.441.486-.393 1.255-.294 2.791l.26 4.08c.18 2.832.27 4.248 1.15 5.112.88.863 2.234.863 4.942.863Z" fill="currentColor"/></svg>
+                    </button>
+                    <button class="panel-btn panel-btn-save" id="panelSave" title="Save note">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </button>
+                    <button class="panel-btn panel-btn-close" id="panelClose" title="Close without saving">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <textarea id="panelTextarea" placeholder="Let Tim know what looks right, what's off, or what's missing here..."></textarea>
+            </div>
+        </div>
+
+        <!-- EXPORT BAR (floating, visible when notes exist) -->
+        <div class="export-bar" id="exportBar">
+            <span class="note-count" id="noteCount">0 notes</span>
+            <button class="nuke-btn" id="nukeBtn" title="Delete all notes">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 110"><circle cx="55" cy="55" r="55" fill="currentColor" opacity="0.15"/><path fill="currentColor" d="M75.164 47.319C80.73 49.695 87 45.625 87 39.5c0-6.674-7.339-10.706-12.964-7.224C70.7 26.803 63.441 23 55 23s-15.7 3.803-19.036 9.276C30.335 28.791 23 32.83 23 39.5c0 6.128 6.274 10.193 11.836 7.819 2.466 4.571 8.833 4.954 11.848.755 1.698 3.81 2.894 8.649 2.579 9.685a4.962 4.962 0 0 0-3.264-1.24c-3.57 0-6.041 3.675-4.567 6.982C32.827 64.183 27 65.494 27 67c0 3.603 21.341 3.129 20.994 4.129-3.661 10.623-9.04 12.076-7.884 14.683A2.002 2.002 0 0 0 41.938 87h26.124c.79 0 1.506-.466 1.828-1.188 1.176-2.648-4.18-3.935-7.884-14.683C61.659 70.129 83 70.603 83 67c0-1.506-5.827-2.817-14.433-3.499 1.474-3.306-.996-6.982-4.567-6.982a4.962 4.962 0 0 0-3.264 1.24c-.304-1.002.82-5.738 2.579-9.685 3.009 4.19 9.378 3.824 11.849-.755z"/></svg>
+            </button>
+            <button class="export-btn" onclick="exportFeedback()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Export Feedback
+            </button>
+        </div>
+        <div class="export-toast" id="exportToast">Feedback exported as Markdown</div>
+
+        <!-- NUKE CONFIRMATION OVERLAY -->
+        <div class="nuke-overlay" id="nukeOverlay">
+            <div class="nuke-modal">
+                <div class="nuke-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 110"><circle cx="55" cy="55" r="55" fill="#E04F5F"/><path fill="#F0F1F1" d="M75.164 47.319C80.73 49.695 87 45.625 87 39.5c0-6.674-7.339-10.706-12.964-7.224C70.7 26.803 63.441 23 55 23s-15.7 3.803-19.036 9.276C30.335 28.791 23 32.83 23 39.5c0 6.128 6.274 10.193 11.836 7.819 2.466 4.571 8.833 4.954 11.848.755 1.698 3.81 2.894 8.649 2.579 9.685a4.962 4.962 0 0 0-3.264-1.24c-3.57 0-6.041 3.675-4.567 6.982C32.827 64.183 27 65.494 27 67c0 3.603 21.341 3.129 20.994 4.129-3.661 10.623-9.04 12.076-7.884 14.683A2.002 2.002 0 0 0 41.938 87h26.124c.79 0 1.506-.466 1.828-1.188 1.176-2.648-4.18-3.935-7.884-14.683C61.659 70.129 83 70.603 83 67c0-1.506-5.827-2.817-14.433-3.499 1.474-3.306-.996-6.982-4.567-6.982a4.962 4.962 0 0 0-3.264 1.24c-.304-1.002.82-5.738 2.579-9.685 3.009 4.19 9.378 3.824 11.849-.755z"/><path fill="#FFF" d="M35.964 32.276C30.335 28.791 23 32.83 23 39.5c0 6.128 6.273 10.193 11.836 7.819 2.466 4.571 8.833 4.954 11.848.755 1.698 3.81 2.894 8.649 2.579 9.685a4.962 4.962 0 0 0-3.264-1.24c-3.57 0-6.041 3.675-4.567 6.982C32.827 64.183 27 65.494 27 67c0 3.603 21.341 3.129 20.994 4.129-3.661 10.623-9.04 12.076-7.884 14.683A2.002 2.002 0 0 0 41.938 87H55V23c-8.441 0-15.7 3.803-19.036 9.276z"/></svg>
+                </div>
+                <div class="nuke-title">Delete All Notes?</div>
+                <p class="nuke-message">This will permanently erase every note you've made across all sections. There's no undo. Your feedback will be gone.</p>
+                <div class="nuke-actions">
+                    <button class="nuke-cancel" id="nukeCancel">Keep My Notes</button>
+                    <button class="nuke-confirm" id="nukeConfirm">Erase Everything</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOTES HUB MODAL -->
+        <div class="notes-hub-overlay" id="notesHubOverlay">
+            <div class="notes-hub">
+                <div class="notes-hub-header">
+                    <div style="display:flex;align-items:baseline;">
+                        <span class="notes-hub-title">Your Notes</span>
+                        <span class="notes-hub-subtitle" id="hubNoteCount"></span>
+                    </div>
+                    <button class="notes-hub-close" id="hubClose" title="Close">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                </div>
+                <div class="notes-hub-body" id="hubBody">
+                    <!-- Dynamically populated -->
+                </div>
+                <div class="notes-hub-footer">
+                    <button class="hub-nuke-btn" id="hubNukeBtn" title="Delete all notes">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 110"><circle cx="55" cy="55" r="55" fill="currentColor" opacity="0.15"/><path fill="currentColor" d="M75.164 47.319C80.73 49.695 87 45.625 87 39.5c0-6.674-7.339-10.706-12.964-7.224C70.7 26.803 63.441 23 55 23s-15.7 3.803-19.036 9.276C30.335 28.791 23 32.83 23 39.5c0 6.128 6.274 10.193 11.836 7.819 2.466 4.571 8.833 4.954 11.848.755 1.698 3.81 2.894 8.649 2.579 9.685a4.962 4.962 0 0 0-3.264-1.24c-3.57 0-6.041 3.675-4.567 6.982C32.827 64.183 27 65.494 27 67c0 3.603 21.341 3.129 20.994 4.129-3.661 10.623-9.04 12.076-7.884 14.683A2.002 2.002 0 0 0 41.938 87h26.124c.79 0 1.506-.466 1.828-1.188 1.176-2.648-4.18-3.935-7.884-14.683C61.659 70.129 83 70.603 83 67c0-1.506-5.827-2.817-14.433-3.499 1.474-3.306-.996-6.982-4.567-6.982a4.962 4.962 0 0 0-3.264 1.24c-.304-1.002.82-5.738 2.579-9.685 3.009 4.19 9.378 3.824 11.849-.755z"/></svg>
+                    </button>
+                    <button class="hub-export-btn" onclick="exportFeedback()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Export
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>Blue Nose Aerial Imaging of Chattanooga</p>
+            <p>Pricing Intelligence Brief &mdash; April 7, 2026</p>
+            <p>Exploratory Research Phase</p>
+        </footer>
+
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================================================ -->
+    <script>
+        // Section toggle (main collapsible sections)
+        function toggleSection(header) {
+            const block = header.closest('.section-block');
+            const content = block.querySelector('.section-content');
+
+            if (block.classList.contains('open')) {
+                // Close: set overflow hidden first so pencils don't stick out during collapse
+                content.style.overflow = 'hidden';
+                content.style.maxHeight = content.scrollHeight + 'px';
+                requestAnimationFrame(() => {
+                    content.style.maxHeight = '0';
+                });
+                block.classList.remove('open');
+            } else {
+                // Open: slow bloom
+                content.style.overflow = 'hidden'; // hidden during animation
+                block.classList.add('open');
+                content.style.maxHeight = content.scrollHeight + 'px';
+                // After transition, set to auto and allow overflow for pencil buttons
+                content.addEventListener('transitionend', function handler() {
+                    if (block.classList.contains('open')) {
+                        content.style.maxHeight = 'none';
+                        content.style.overflow = 'visible';
+                        // Trigger reveal for children that the observer may have missed
+                        // (elements inside collapsed containers can't be observed)
+                        content.querySelectorAll('.reveal:not(.revealed)').forEach((el, i) => {
+                            setTimeout(() => el.classList.add('revealed'), i * 80);
+                        });
+                    }
+                    content.removeEventListener('transitionend', handler);
+                });
+            }
+        }
+
+        // Detail card toggle (inner collapsibles)
+        function toggleDetail(header) {
+            const card = header.closest('.detail-card');
+            const body = card.querySelector('.detail-body');
+
+            if (card.classList.contains('open')) {
+                body.style.maxHeight = body.scrollHeight + 'px';
+                requestAnimationFrame(() => {
+                    body.style.maxHeight = '0';
+                });
+                card.classList.remove('open');
+            } else {
+                card.classList.add('open');
+                body.style.maxHeight = body.scrollHeight + 'px';
+                body.addEventListener('transitionend', function handler() {
+                    if (card.classList.contains('open')) {
+                        body.style.maxHeight = 'none';
+                    }
+                    body.removeEventListener('transitionend', handler);
+                });
+            }
+        }
+
+        // TOC links: open the target section and scroll
+        document.querySelectorAll('.toc-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const sectionId = this.getAttribute('data-section');
+                const block = document.getElementById(sectionId);
+                if (block && !block.classList.contains('open')) {
+                    const header = block.querySelector('.section-header');
+                    toggleSection(header);
+                }
+                setTimeout(() => {
+                    block.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            });
+        });
+
+        // Open sections 2, 5, 6 by default (highest-value content)
+        // Force clean slate on every page load / refresh
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // Ensure we're at the very top (belt + suspenders)
+            window.scrollTo(0, 0);
+
+            // All sections start CLOSED on load — no auto-opens
+
+            // ========== FEEDBACK SYSTEM ==========
+            const pencilSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>';
+
+            // Note storage: keyed by data-path, persisted to localStorage
+            const STORAGE_KEY = 'bluenose_feedback_notes';
+            let notes = {};
+            try {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (stored) notes = JSON.parse(stored);
+            } catch(e) { notes = {}; }
+
+            function persistNotes() {
+                try { localStorage.setItem(STORAGE_KEY, JSON.stringify(notes)); } catch(e) {}
+            }
+
+            // Build a path label for a detail card
+            function getPath(card) {
+                const section = card.closest('.section-block');
+                if (!section) return 'General';
+                const secNum = section.querySelector('.section-number');
+                const secH2 = section.querySelector('h2');
+                let path = 'Section ' + (secNum ? secNum.textContent.trim() : '?');
+                path += ': ' + (secH2 ? secH2.textContent.trim() : 'Untitled');
+                const dt = card.querySelector('.detail-title');
+                if (dt) path += ' > ' + dt.textContent.trim();
+                return path;
+            }
+
+            // Inject pencil buttons OUTSIDE each detail card
+            document.querySelectorAll('.detail-card').forEach(card => {
+                const path = getPath(card);
+
+                // Wrap card in a relative container
+                const wrap = document.createElement('div');
+                wrap.className = 'detail-card-wrap';
+                card.parentNode.insertBefore(wrap, card);
+                wrap.appendChild(card);
+
+                // Create pencil button
+                const btn = document.createElement('button');
+                btn.className = 'note-pencil';
+                btn.title = 'Add a note';
+                btn.innerHTML = pencilSVG;
+                btn.setAttribute('data-path', path);
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    openPanel(this);
+                });
+                wrap.appendChild(btn);
+            });
+
+            // Restore saved note indicators on pencil buttons
+            document.querySelectorAll('.note-pencil').forEach(btn => {
+                const path = btn.getAttribute('data-path');
+                if (notes[path]) {
+                    btn.classList.add('has-note');
+                }
+            });
+
+            // Panel references
+            const panel = document.getElementById('feedbackPanel');
+            const panelPath = document.getElementById('panelPath');
+            const panelTextarea = document.getElementById('panelTextarea');
+            const panelSave = document.getElementById('panelSave');
+            const panelClose = document.getElementById('panelClose');
+            const panelDrag = document.getElementById('panelDrag');
+            let activeBtn = null; // currently editing pencil button
+            let activePath = '';
+
+            // Open the bottom panel for a specific pencil button
+            function openPanel(btn) {
+                activeBtn = btn;
+                activePath = btn.getAttribute('data-path');
+                panelPath.textContent = activePath;
+                panelTextarea.value = notes[activePath] || '';
+
+                // Ensure the parent section is open
+                const section = btn.closest('.section-block') || btn.closest('.section-content')?.closest('.section-block');
+                if (section && !section.classList.contains('open')) {
+                    const sh = section.querySelector('.section-header');
+                    if (sh) toggleSection(sh);
+                }
+
+                // Ensure the detail card is open
+                const wrap = btn.closest('.detail-card-wrap');
+                if (wrap) {
+                    const card = wrap.querySelector('.detail-card');
+                    if (card && !card.classList.contains('open')) {
+                        const dh = card.querySelector('.detail-header');
+                        if (dh) toggleDetail(dh);
+                    }
+                }
+
+                // Show panel
+                panel.classList.add('open');
+
+                // Scroll so the card sits above the panel
+                setTimeout(() => {
+                    const cardEl = wrap || btn.closest('.detail-card');
+                    if (cardEl) {
+                        const panelH = panel.offsetHeight;
+                        const cardRect = cardEl.getBoundingClientRect();
+                        const viewH = window.innerHeight;
+                        const visibleArea = viewH - panelH;
+                        // Scroll card to center of visible area above panel
+                        const targetY = window.scrollY + cardRect.top - (visibleArea / 2) + (cardRect.height / 2);
+                        window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+                    }
+                    panelTextarea.focus();
+                }, 150);
+            }
+
+            // Save note
+            panelSave.addEventListener('click', () => {
+                if (!activePath) return;
+                const val = panelTextarea.value.trim();
+                if (val) {
+                    notes[activePath] = val;
+                } else {
+                    delete notes[activePath];
+                }
+                persistNotes();
+                // Update pencil button state
+                if (activeBtn) {
+                    if (val) {
+                        activeBtn.classList.add('has-note');
+                    } else {
+                        activeBtn.classList.remove('has-note');
+                    }
+                }
+                closePanel();
+                updateNoteCount();
+            });
+
+            // Close without saving
+            panelClose.addEventListener('click', () => {
+                closePanel();
+            });
+
+            // Keyboard: Escape to close, Ctrl/Cmd+Enter to save
+            panelTextarea.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closePanel();
+                } else if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+                    panelSave.click();
+                }
+            });
+
+            function closePanel() {
+                panel.classList.remove('open');
+                activeBtn = null;
+                activePath = '';
+            }
+
+            // ========== TRASH: DELETE SINGLE NOTE ==========
+            const panelTrash = document.getElementById('panelTrash');
+            panelTrash.addEventListener('click', () => {
+                if (!activePath) return;
+                delete notes[activePath];
+                persistNotes();
+                if (activeBtn) {
+                    activeBtn.classList.remove('has-note');
+                }
+                closePanel();
+                updateNoteCount();
+            });
+
+            // ========== NUKE: DELETE ALL NOTES ==========
+            const nukeBtn = document.getElementById('nukeBtn');
+            const nukeOverlay = document.getElementById('nukeOverlay');
+            const nukeCancel = document.getElementById('nukeCancel');
+            const nukeConfirm = document.getElementById('nukeConfirm');
+
+            nukeBtn.addEventListener('click', () => {
+                nukeOverlay.classList.add('open');
+            });
+
+            nukeCancel.addEventListener('click', () => {
+                nukeOverlay.classList.remove('open');
+            });
+
+            // Click overlay background to cancel
+            nukeOverlay.addEventListener('click', (e) => {
+                if (e.target === nukeOverlay) {
+                    nukeOverlay.classList.remove('open');
+                }
+            });
+
+            nukeConfirm.addEventListener('click', () => {
+                // Wipe all notes
+                Object.keys(notes).forEach(k => delete notes[k]);
+                persistNotes();
+                // Remove has-note class from all pencil buttons
+                document.querySelectorAll('.note-pencil.has-note').forEach(btn => {
+                    btn.classList.remove('has-note');
+                });
+                nukeOverlay.classList.remove('open');
+                closePanel();
+                updateNoteCount();
+                // Show toast
+                const toast = document.getElementById('exportToast');
+                toast.textContent = 'All notes erased';
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    toast.textContent = 'Feedback exported as Markdown';
+                }, 2500);
+            });
+
+            // ========== DRAG TO RESIZE ==========
+            let isDragging = false;
+            let startY = 0;
+            let startH = 0;
+
+            panelDrag.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startY = e.clientY;
+                startH = panel.offsetHeight;
+                document.body.style.cursor = 'ns-resize';
+                document.body.style.userSelect = 'none';
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                const delta = startY - e.clientY;
+                const newH = Math.min(Math.max(startH + delta, 160), window.innerHeight * 0.6);
+                panel.style.height = newH + 'px';
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    document.body.style.cursor = '';
+                    document.body.style.userSelect = '';
+                }
+            });
+
+            // Touch drag support
+            panelDrag.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                startY = e.touches[0].clientY;
+                startH = panel.offsetHeight;
+                e.preventDefault();
+            }, { passive: false });
+
+            document.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                const delta = startY - e.touches[0].clientY;
+                const newH = Math.min(Math.max(startH + delta, 160), window.innerHeight * 0.6);
+                panel.style.height = newH + 'px';
+            }, { passive: false });
+
+            document.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+
+            // ========== NOTE COUNT & EXPORT ==========
+            function updateNoteCount() {
+                const count = Object.keys(notes).length;
+                const bar = document.getElementById('exportBar');
+                const countEl = document.getElementById('noteCount');
+                countEl.textContent = count + (count === 1 ? ' note' : ' notes');
+                if (count > 0) {
+                    countEl.classList.add('clickable');
+                } else {
+                    countEl.classList.remove('clickable');
+                }
+                if (count > 0 && !panel.classList.contains('open')) {
+                    bar.classList.add('visible');
+                } else {
+                    bar.classList.remove('visible');
+                }
+                // Also update hub subtitle if open
+                const hubSub = document.getElementById('hubNoteCount');
+                if (hubSub) hubSub.textContent = count + (count === 1 ? ' note' : ' notes');
+            }
+
+            // Hide export bar when panel is open, show when closed
+            const observer = new MutationObserver(() => {
+                updateNoteCount();
+            });
+            observer.observe(panel, { attributes: true, attributeFilter: ['class'] });
+
+            // Make updateNoteCount and notes accessible to export
+            window._feedbackNotes = notes;
+            window._updateNoteCount = updateNoteCount;
+
+            // Initial count check (in case of restored notes)
+            updateNoteCount();
+
+            // ========== NOTES HUB (Control Center Modal) ==========
+            const hubOverlay = document.getElementById('notesHubOverlay');
+            const hubBody = document.getElementById('hubBody');
+            const hubClose = document.getElementById('hubClose');
+            const hubNukeBtn = document.getElementById('hubNukeBtn');
+            const noteCountEl = document.getElementById('noteCount');
+
+            // Trash SVG for delete buttons inside hub
+            const trashMiniSVG = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.75 6.17C2.75 5.71 3.1 5.33 3.52 5.33L6.19 5.33C6.72 5.32 7.18 4.95 7.36 4.42L7.51 3.95C7.58 3.72 7.64 3.52 7.72 3.35C8.06 2.64 8.69 2.16 9.41 2.03C9.59 2 9.79 2 10.01 2H13.49C13.71 2 13.91 2 14.09 2.03C14.81 2.16 15.44 2.64 15.78 3.35C15.86 3.52 15.92 3.72 15.99 3.95L16.11 4.32C16.13 4.39 16.13 4.4 16.14 4.42C16.32 4.95 16.88 5.32 17.41 5.33H19.98C20.4 5.33 20.75 5.71 20.75 6.17C20.75 6.63 20.4 7 19.98 7H3.52C3.1 7 2.75 6.63 2.75 6.17Z" fill="currentColor"/><path opacity="0.5" d="M11.61 22H12.39C15.1 22 16.45 22 17.34 21.14C18.22 20.27 18.31 18.86 18.49 16.03L18.75 11.95C18.84 10.41 18.89 9.64 18.45 9.15C18.01 8.67 17.26 8.67 15.77 8.67H8.23C6.74 8.67 5.99 8.67 5.55 9.15C5.11 9.64 5.16 10.41 5.26 11.95L5.52 16.03C5.7 18.86 5.79 20.27 6.67 21.14C7.55 22 8.9 22 11.61 22Z" fill="currentColor"/></svg>';
+
+            function openNotesHub() {
+                populateHub();
+                hubOverlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeNotesHub() {
+                hubOverlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            function populateHub() {
+                const paths = Object.keys(notes);
+                if (paths.length === 0) {
+                    hubBody.innerHTML = '<div class="notes-hub-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>No notes yet. Use the pencil icons next to each card to start adding feedback.</span></div>';
+                    return;
+                }
+                let html = '';
+                paths.forEach((path, idx) => {
+                    const val = notes[path] || '';
+                    const escapedVal = val.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+                    const escapedPath = path.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+                    html += '<div class="hub-note-card" data-hub-path="' + path.replace(/"/g,'&quot;') + '">';
+                    html += '  <div class="hub-note-path">';
+                    html += '    <span class="hub-note-path-text">' + escapedPath + '</span>';
+                    html += '    <button class="hub-note-goto" data-goto-path="' + path.replace(/"/g,'&quot;') + '" title="Go to this section">Go To</button>';
+                    html += '  </div>';
+                    html += '  <textarea class="hub-note-textarea" data-note-path="' + path.replace(/"/g,'&quot;') + '">' + escapedVal + '</textarea>';
+                    html += '  <div class="hub-note-actions">';
+                    html += '    <span class="hub-note-saved-flash" id="hubFlash' + idx + '">Saved</span>';
+                    html += '    <button class="hub-note-save" data-save-idx="' + idx + '" data-save-path="' + path.replace(/"/g,'&quot;') + '">Save</button>';
+                    html += '    <button class="hub-note-delete" data-del-path="' + path.replace(/"/g,'&quot;') + '" title="Delete this note">' + trashMiniSVG + '</button>';
+                    html += '  </div>';
+                    html += '</div>';
+                });
+                hubBody.innerHTML = html;
+
+                // Attach event listeners
+                hubBody.querySelectorAll('.hub-note-save').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const p = this.getAttribute('data-save-path');
+                        const idx = this.getAttribute('data-save-idx');
+                        const ta = hubBody.querySelector('textarea[data-note-path="' + p.replace(/"/g, '\\"') + '"]');
+                        if (!ta) return;
+                        const val = ta.value.trim();
+                        if (val) {
+                            notes[p] = val;
+                        } else {
+                            delete notes[p];
+                        }
+                        persistNotes();
+                        updateNoteCount();
+                        syncPencilState(p, !!val);
+                        // Flash "Saved"
+                        const flash = document.getElementById('hubFlash' + idx);
+                        if (flash) {
+                            flash.classList.add('show');
+                            setTimeout(() => flash.classList.remove('show'), 1500);
+                        }
+                        // If note was deleted (empty), remove the card after a beat
+                        if (!val) {
+                            const card = this.closest('.hub-note-card');
+                            if (card) {
+                                card.style.opacity = '0';
+                                card.style.transform = 'translateX(20px)';
+                                card.style.transition = 'opacity 0.3s, transform 0.3s';
+                                setTimeout(() => { card.remove(); checkHubEmpty(); }, 300);
+                            }
+                        }
+                    });
+                });
+
+                hubBody.querySelectorAll('.hub-note-delete').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const p = this.getAttribute('data-del-path');
+                        delete notes[p];
+                        persistNotes();
+                        updateNoteCount();
+                        syncPencilState(p, false);
+                        const card = this.closest('.hub-note-card');
+                        if (card) {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateX(20px)';
+                            card.style.transition = 'opacity 0.3s, transform 0.3s';
+                            setTimeout(() => { card.remove(); checkHubEmpty(); }, 300);
+                        }
+                    });
+                });
+
+                hubBody.querySelectorAll('.hub-note-goto').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const p = this.getAttribute('data-goto-path');
+                        closeNotesHub();
+                        navigateToNote(p);
+                    });
+                });
+
+                // Ctrl/Cmd+Enter to save from any textarea in hub
+                hubBody.querySelectorAll('.hub-note-textarea').forEach(ta => {
+                    ta.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+                            const card = this.closest('.hub-note-card');
+                            const saveBtn = card ? card.querySelector('.hub-note-save') : null;
+                            if (saveBtn) saveBtn.click();
+                        }
+                    });
+                });
+            }
+
+            function checkHubEmpty() {
+                if (hubBody.querySelectorAll('.hub-note-card').length === 0) {
+                    populateHub(); // Re-render to show empty state
+                }
+            }
+
+            function syncPencilState(path, hasNote) {
+                document.querySelectorAll('.note-pencil').forEach(btn => {
+                    if (btn.getAttribute('data-path') === path) {
+                        if (hasNote) {
+                            btn.classList.add('has-note');
+                        } else {
+                            btn.classList.remove('has-note');
+                        }
+                    }
+                });
+            }
+
+            function navigateToNote(path) {
+                // Find the pencil button for this path
+                const pencil = document.querySelector('.note-pencil[data-path="' + path.replace(/"/g, '\\"') + '"]');
+                if (!pencil) return;
+
+                // Open the section if closed
+                const section = pencil.closest('.section-block') || pencil.closest('.section-content')?.closest('.section-block');
+                if (section && !section.classList.contains('open')) {
+                    const sh = section.querySelector('.section-header');
+                    if (sh) toggleSection(sh);
+                }
+
+                // Open the detail card if closed
+                const wrap = pencil.closest('.detail-card-wrap');
+                if (wrap) {
+                    const card = wrap.querySelector('.detail-card');
+                    if (card && !card.classList.contains('open')) {
+                        const dh = card.querySelector('.detail-header');
+                        if (dh) toggleDetail(dh);
+                    }
+                }
+
+                // Scroll to the card
+                setTimeout(() => {
+                    const target = wrap || pencil;
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    // Brief highlight pulse
+                    target.style.boxShadow = '0 0 0 2px var(--amber)';
+                    setTimeout(() => {
+                        target.style.transition = 'box-shadow 0.6s';
+                        target.style.boxShadow = '';
+                    }, 1200);
+                }, 200);
+            }
+
+            // Click note count to open hub
+            noteCountEl.addEventListener('click', () => {
+                if (Object.keys(notes).length > 0) {
+                    openNotesHub();
+                }
+            });
+
+            // Close hub
+            hubClose.addEventListener('click', closeNotesHub);
+
+            hubOverlay.addEventListener('click', (e) => {
+                if (e.target === hubOverlay) closeNotesHub();
+            });
+
+            // Escape key closes hub
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && hubOverlay.classList.contains('open')) {
+                    closeNotesHub();
+                }
+            });
+
+            // Hub nuke button triggers the same nuke overlay
+            hubNukeBtn.addEventListener('click', () => {
+                closeNotesHub();
+                setTimeout(() => {
+                    nukeOverlay.classList.add('open');
+                }, 200);
+            });
+
+            // ========== SCROLL REVEAL: IMPLODE ENTRANCE ==========
+            //
+            // Sequence:
+            //   t=0ms      → Header children animate in (1500ms duration)
+            //   t=1500ms   → TOC card container fades in (600ms duration)
+            //   t=1500ms   → TOC label + 8 items stagger in (500ms apart, 1s each)
+            //                 Last item (08) starts at 1500+(8×500)=5500ms, finishes 6500ms
+            //   t=6500ms   → IntersectionObserver activates for section blocks
+
+            // --- 1. HEADER CHILDREN ---
+            // All 4 elements animate together at 1.5s, firing immediately on load.
+            const headerChildren = document.querySelectorAll(
+                'header .header-label, header h1, header .subtitle, header .metadata'
+            );
+            const slowTransition = [
+                'opacity 1.5s cubic-bezier(0.25, 0.1, 0.25, 1)',
+                'transform 1.5s cubic-bezier(0.25, 0.1, 0.25, 1)',
+                'filter 1.5s cubic-bezier(0.25, 0.1, 0.25, 1)'
+            ].join(', ');
+            headerChildren.forEach(el => {
+                el.classList.add('reveal');
+                el.style.transition = slowTransition;
+            });
+            // Double rAF: ensures browser paints invisible state before triggering transition
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    headerChildren.forEach(el => el.classList.add('revealed'));
+                });
+            });
+
+            // --- 2. HEADER DIVIDER LINE + TOC CARD CONTAINER ---
+            // Fires at 1000ms — 500ms before the header text finishes,
+            // so the card and line are already coming in as the header lands.
+            const tocNav = document.querySelector('nav.toc');
+            if (tocNav) {
+                tocNav.classList.add('reveal');
+                tocNav.style.transition = [
+                    'opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)',
+                    'transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)',
+                    'filter 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)'
+                ].join(', ');
+                setTimeout(() => tocNav.classList.add('revealed'), 1000);
+            }
+            // Header line fires at the same moment as the TOC card
+            setTimeout(() => {
+                document.querySelector('header').classList.add('line-revealed');
+            }, 1000);
+
+            // --- 3. TOC LABEL + ITEMS ---
+            // "Navigate" label is index 0, items 01–08 are indices 1–8.
+            // Each fires at 1000 + (i × 150)ms with 0.5s duration.
+            // Last item (08) fires at 1000+(8×150)=2200ms and finishes at 2700ms.
+            const tocLabel = document.querySelector('.toc-label');
+            const tocItems = Array.from(document.querySelectorAll('.toc-item'));
+            const allTocEls = tocLabel ? [tocLabel, ...tocItems] : tocItems;
+            const tocTransition = [
+                'opacity 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)',
+                'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)',
+                'filter 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)'
+            ].join(', ');
+            allTocEls.forEach(el => {
+                el.classList.add('reveal');
+                el.style.transition = tocTransition;
+            });
+            allTocEls.forEach((el, i) => {
+                setTimeout(() => el.classList.add('revealed'), 1000 + i * 150);
+            });
+
+            // --- 4. SECTION BLOCKS + FOOTER ---
+            // Tagged for scroll-reveal but the IntersectionObserver is held back
+            // until 6500ms — after the last TOC item (08) has fully finished.
+            ['.section-block', 'footer'].forEach(sel => {
+                document.querySelectorAll(sel).forEach(el => el.classList.add('reveal'));
+            });
+
+            // Inside each section-content: tag every direct child
+            document.querySelectorAll('.section-content').forEach(sc => {
+                Array.from(sc.children).forEach((child, idx) => {
+                    if (!child.classList.contains('reveal')) {
+                        child.classList.add('reveal');
+                    }
+                    // Stagger direct children by 80ms
+                    if (idx > 0) {
+                        child.style.transitionDelay = (idx * 0.08) + 's';
+                    }
+                });
+            });
+
+            // Profile cards, stat boxes, ref items with stagger
+            ['.profile-card', '.stats-row .stat-box', '.ref-item'].forEach(sel => {
+                document.querySelectorAll(sel).forEach((el, i) => {
+                    if (!el.classList.contains('reveal')) {
+                        el.classList.add('reveal');
+                    }
+                    const parent = el.parentElement;
+                    const siblings = parent.querySelectorAll(':scope > ' + sel.split(' ').pop());
+                    const idx = Array.from(siblings).indexOf(el);
+                    if (idx > 0) {
+                        el.style.transitionDelay = (idx * 0.08) + 's';
+                    }
+                });
+            });
+
+            // Intersection Observer: reveal sections when 15% visible.
+            // Held until 2700ms — the moment item 08 finishes entering.
+            // Nothing in the sections can reveal before the full TOC sequence completes.
+            const observer2 = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        observer2.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            setTimeout(() => {
+                document.querySelectorAll('.reveal:not(.revealed)').forEach(el => {
+                    observer2.observe(el);
+                });
+            }, 2700);
+        });
+
+        // Export all notes as structured Markdown
+        function exportFeedback() {
+            const notes = window._feedbackNotes || {};
+            const paths = Object.keys(notes);
+            if (paths.length === 0) return;
+
+            const timestamp = new Date().toISOString().split('T')[0];
+            let md = '# Blue Nose Aerial - Pricing Brief Feedback\n';
+            md += '**Exported:** ' + timestamp + '\n';
+            md += '**Document:** Pricing Intelligence Brief (April 7, 2026)\n\n';
+            md += '---\n\n';
+
+            // Group by section
+            let currentSection = '';
+            // Sort paths by section number
+            paths.sort((a, b) => {
+                const na = parseInt((a.match(/Section (\d+)/) || [0,0])[1]);
+                const nb = parseInt((b.match(/Section (\d+)/) || [0,0])[1]);
+                return na - nb;
+            });
+
+            paths.forEach(path => {
+                const sectionMatch = path.match(/^Section \d+: [^>]+/);
+                const sectionName = sectionMatch ? sectionMatch[0].trim() : path;
+
+                if (sectionName !== currentSection) {
+                    currentSection = sectionName;
+                    md += '## ' + sectionName + '\n\n';
+                }
+
+                const subPath = path.replace(/^Section \d+: [^>]+(> )?/, '').trim();
+                if (subPath) {
+                    md += '### ' + subPath + '\n\n';
+                }
+
+                md += '> ' + notes[path].replace(/\n/g, '\n> ') + '\n\n';
+            });
+
+            md += '---\n\n';
+            md += '*Total notes: ' + paths.length + '*\n';
+            md += '*Feed this file back into the conversation for analysis.*\n';
+
+            // Trigger download
+            const blob = new Blob([md], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Blue_Nose_Feedback_' + timestamp + '.md';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            // Show toast
+            const toast = document.getElementById('exportToast');
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 2500);
+        }
+    </script>
+</body>
+</html>
