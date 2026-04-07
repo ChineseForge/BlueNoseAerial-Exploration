@@ -797,6 +797,124 @@
             color: var(--amber-bright);
         }
 
+        /* ========== SECTION-LEVEL NOTE PENCIL ========== */
+        /* Sits inline inside the section-header, just before the chevron */
+        .section-note-pencil {
+            width: 28px;
+            height: 28px;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            flex-shrink: 0;
+            margin-right: 6px;
+            transition: opacity 0.2s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        background 0.2s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        border-color 0.2s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        transform 0.1s;
+        }
+
+        .section-header:hover .section-note-pencil {
+            opacity: 0.45;
+        }
+
+        .section-note-pencil:hover {
+            opacity: 1 !important;
+            background: var(--bg-card-hover);
+            border-color: var(--amber-dim);
+        }
+
+        .section-note-pencil:active {
+            transform: scale(0.92);
+        }
+
+        .section-note-pencil svg {
+            width: 13px;
+            height: 13px;
+            color: var(--amber);
+        }
+
+        .section-note-pencil.has-note {
+            opacity: 0.5;
+            border-color: var(--amber-dim);
+            animation: amberPulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .section-note-pencil.has-note:hover {
+            animation: none;
+            opacity: 1;
+            box-shadow: 0 0 10px 2px rgba(200, 148, 62, 0.2);
+        }
+
+        /* ========== CALLOUT WRAP (mirrors detail-card-wrap) ========== */
+        .callout-wrap {
+            position: relative;
+            overflow: visible;
+        }
+
+        /* ========== PANEL SCOPE BADGE ========== */
+        /* Small label shown when a whole-section note is open */
+        .panel-scope-badge {
+            display: none;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--amber-dim);
+            background: var(--amber-glow);
+            border: 1px solid var(--amber-dim);
+            border-radius: 4px;
+            padding: 4px 10px;
+            margin-bottom: 10px;
+            align-self: flex-start;
+        }
+
+        .panel-scope-badge.visible {
+            display: inline-block;
+        }
+
+        /* ========== PANEL SOURCE SELECT (Databases section) ========== */
+        .panel-source-select {
+            display: none;
+            width: 100%;
+            background: var(--bg-deep);
+            border: 1px solid var(--border-warm);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: var(--text-primary);
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 24 16'%3E%3Cpolyline points='2 2 12 12 22 2' fill='none' stroke='%238a6628' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 36px;
+        }
+
+        .panel-source-select:focus {
+            border-color: var(--amber-dim);
+        }
+
+        .panel-source-select option {
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        .panel-source-select.visible {
+            display: block;
+        }
+
         /* ========== SCROLL REVEAL: IMPLODE ENTRANCE ========== */
         .reveal {
             opacity: 0;
@@ -1862,7 +1980,7 @@
 
                 <p>Every factor that goes into a job price. If a cost isn't accounted for here, it's eating your margin.</p>
 
-                <h3>A. Equipment (Capital Depreciation)</h3>
+                <h3>Equipment (Capital Depreciation)</h3>
                 <div class="detail-card">
                     <div class="detail-header" onclick="toggleDetail(this)">
                         <span class="detail-title">Drone Equipment Costs & Depreciation</span>
@@ -1893,7 +2011,7 @@
                     </div>
                 </div>
 
-                <h3>B. Insurance (Annual Fixed)</h3>
+                <h3>Insurance (Annual Fixed)</h3>
                 <div class="detail-card">
                     <div class="detail-header" onclick="toggleDetail(this)">
                         <span class="detail-title">Annual Insurance Breakdown</span>
@@ -1912,7 +2030,7 @@
                     </div>
                 </div>
 
-                <h3>C. Labor</h3>
+                <h3>Labor</h3>
                 <div class="detail-card">
                     <div class="detail-header" onclick="toggleDetail(this)">
                         <span class="detail-title">Pilot Rate Benchmarks</span>
@@ -1935,7 +2053,7 @@
                     </div>
                 </div>
 
-                <h3>D. Software & Post-Processing</h3>
+                <h3>Software & Post-Processing</h3>
                 <div class="detail-card">
                     <div class="detail-header" onclick="toggleDetail(this)">
                         <span class="detail-title">Post-Processing Cost Structure</span>
@@ -1954,7 +2072,7 @@
                     </div>
                 </div>
 
-                <h3>E. Regulatory & Compliance</h3>
+                <h3>Regulatory & Compliance</h3>
                 <div class="detail-card">
                     <div class="detail-header" onclick="toggleDetail(this)">
                         <span class="detail-title">Compliance & Administrative Burden</span>
@@ -1973,7 +2091,7 @@
                     </div>
                 </div>
 
-                <h3>F. Travel & Logistics</h3>
+                <h3>Travel & Logistics</h3>
                 <div class="detail-card">
                     <div class="detail-header" onclick="toggleDetail(this)">
                         <span class="detail-title">Transportation & Field Costs</span>
@@ -1991,7 +2109,7 @@
                     </div>
                 </div>
 
-                <h3>G. Overhead</h3>
+                <h3>Overhead</h3>
                 <div class="detail-card">
                     <div class="detail-header" onclick="toggleDetail(this)">
                         <span class="detail-title">Monthly Operating Overhead</span>
@@ -2514,6 +2632,12 @@
                 </div>
             </div>
             <div class="panel-body">
+                <!-- Scope badge: visible only for whole-section notes -->
+                <div class="panel-scope-badge" id="panelScopeBadge">Note on entire section</div>
+                <!-- Source selector: visible only for Databases & Sources (section 07) -->
+                <select class="panel-source-select" id="panelSourceSelect">
+                    <option value="">— Entire Section —</option>
+                </select>
                 <textarea id="panelTextarea" placeholder="Let Tim know what looks right, what's off, or what's missing here..."></textarea>
             </div>
         </div>
@@ -2521,9 +2645,6 @@
         <!-- EXPORT BAR (floating, visible when notes exist) -->
         <div class="export-bar" id="exportBar">
             <span class="note-count" id="noteCount">0 notes</span>
-            <button class="nuke-btn" id="nukeBtn" title="Delete all notes">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 110"><circle cx="55" cy="55" r="55" fill="currentColor" opacity="0.15"/><path fill="currentColor" d="M75.164 47.319C80.73 49.695 87 45.625 87 39.5c0-6.674-7.339-10.706-12.964-7.224C70.7 26.803 63.441 23 55 23s-15.7 3.803-19.036 9.276C30.335 28.791 23 32.83 23 39.5c0 6.128 6.274 10.193 11.836 7.819 2.466 4.571 8.833 4.954 11.848.755 1.698 3.81 2.894 8.649 2.579 9.685a4.962 4.962 0 0 0-3.264-1.24c-3.57 0-6.041 3.675-4.567 6.982C32.827 64.183 27 65.494 27 67c0 3.603 21.341 3.129 20.994 4.129-3.661 10.623-9.04 12.076-7.884 14.683A2.002 2.002 0 0 0 41.938 87h26.124c.79 0 1.506-.466 1.828-1.188 1.176-2.648-4.18-3.935-7.884-14.683C61.659 70.129 83 70.603 83 67c0-1.506-5.827-2.817-14.433-3.499 1.474-3.306-.996-6.982-4.567-6.982a4.962 4.962 0 0 0-3.264 1.24c-.304-1.002.82-5.738 2.579-9.685 3.009 4.19 9.378 3.824 11.849-.755z"/></svg>
-            </button>
             <button class="export-btn" onclick="exportFeedback()">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                 Export Feedback
@@ -2723,8 +2844,64 @@
                 wrap.appendChild(btn);
             });
 
-            // Restore saved note indicators on pencil buttons
-            document.querySelectorAll('.note-pencil').forEach(btn => {
+            // ========== CALLOUT CARD PENCIL BUTTONS ==========
+            // Same pattern as detail-cards: wrap in relative div, add pencil outside.
+            // Path includes the callout label (KEY INSIGHT, THE OPPORTUNITY, etc.)
+            document.querySelectorAll('.callout').forEach(callout => {
+                const section = callout.closest('.section-block');
+                if (!section) return;
+                const secNum = section.querySelector('.section-number');
+                const secH2 = section.querySelector('h2');
+                const label = callout.querySelector('.callout-label');
+                let path = 'Section ' + (secNum ? secNum.textContent.trim() : '?');
+                path += ': ' + (secH2 ? secH2.textContent.trim() : 'Untitled');
+                path += ' > ' + (label ? label.textContent.trim() : 'Callout');
+
+                const wrap = document.createElement('div');
+                wrap.className = 'callout-wrap';
+                callout.parentNode.insertBefore(wrap, callout);
+                wrap.appendChild(callout);
+
+                const btn = document.createElement('button');
+                btn.className = 'note-pencil';
+                btn.title = 'Add a note';
+                btn.innerHTML = pencilSVG;
+                btn.setAttribute('data-path', path);
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    openPanel(this);
+                });
+                wrap.appendChild(btn);
+            });
+
+            // ========== SECTION-LEVEL PENCIL BUTTONS ==========
+            // Injected inside the section-header, before the chevron.
+            // Path ends with "— Entire Section" to distinguish from card notes.
+            document.querySelectorAll('.section-block').forEach(block => {
+                const header = block.querySelector('.section-header');
+                if (!header) return;
+                const secNum = block.querySelector('.section-number');
+                const secH2 = block.querySelector('h2');
+                const path = 'Section ' + (secNum ? secNum.textContent.trim() : '?')
+                           + ': ' + (secH2 ? secH2.textContent.trim() : 'Untitled')
+                           + ' — Entire Section';
+
+                const btn = document.createElement('button');
+                btn.className = 'section-note-pencil';
+                btn.title = 'Note on this section';
+                btn.innerHTML = pencilSVG;
+                btn.setAttribute('data-path', path);
+                btn.setAttribute('data-section-id', block.id || '');
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    openPanel(this);
+                });
+                // Insert before the chevron (last child of header)
+                header.insertBefore(btn, header.lastElementChild);
+            });
+
+            // Restore saved note indicators on ALL pencil buttons (detail + callout + section)
+            document.querySelectorAll('.note-pencil, .section-note-pencil').forEach(btn => {
                 const path = btn.getAttribute('data-path');
                 if (notes[path]) {
                     btn.classList.add('has-note');
@@ -2741,11 +2918,58 @@
             let activeBtn = null; // currently editing pencil button
             let activePath = '';
 
+            // Panel meta elements
+            const panelScopeBadge = document.getElementById('panelScopeBadge');
+            const panelSourceSelect = document.getElementById('panelSourceSelect');
+
+            // Populate databases source dropdown from section 07 ref-items
+            const s7 = document.getElementById('s7');
+            if (s7) {
+                s7.querySelectorAll('.ref-name').forEach(el => {
+                    const opt = document.createElement('option');
+                    opt.value = el.textContent.trim();
+                    opt.textContent = el.textContent.trim();
+                    panelSourceSelect.appendChild(opt);
+                });
+            }
+
+            // When source is selected, update activePath and load that note
+            panelSourceSelect.addEventListener('change', function() {
+                const base = 'Section 07: Databases & Sources';
+                if (this.value) {
+                    activePath = base + ' > ' + this.value;
+                } else {
+                    activePath = base + ' — Entire Section';
+                }
+                panelPath.textContent = activePath;
+                panelTextarea.value = notes[activePath] || '';
+                panelTextarea.focus();
+            });
+
             // Open the bottom panel for a specific pencil button
             function openPanel(btn) {
                 activeBtn = btn;
                 activePath = btn.getAttribute('data-path');
                 panelPath.textContent = activePath;
+
+                const isWholeSection = activePath.includes('— Entire Section');
+                const isDbSection = activePath.startsWith('Section 07: Databases & Sources');
+
+                // Scope badge: show only for whole-section notes
+                if (isWholeSection) {
+                    panelScopeBadge.classList.add('visible');
+                } else {
+                    panelScopeBadge.classList.remove('visible');
+                }
+
+                // Source dropdown: show only for the Databases section note
+                if (isDbSection && isWholeSection) {
+                    panelSourceSelect.classList.add('visible');
+                    panelSourceSelect.value = ''; // reset to "Entire Section"
+                } else {
+                    panelSourceSelect.classList.remove('visible');
+                }
+
                 panelTextarea.value = notes[activePath] || '';
 
                 // Ensure the parent section is open
@@ -2840,14 +3064,10 @@
             });
 
             // ========== NUKE: DELETE ALL NOTES ==========
-            const nukeBtn = document.getElementById('nukeBtn');
+            // Nuke button lives only in the notes hub now (removed from export bar)
             const nukeOverlay = document.getElementById('nukeOverlay');
             const nukeCancel = document.getElementById('nukeCancel');
             const nukeConfirm = document.getElementById('nukeConfirm');
-
-            nukeBtn.addEventListener('click', () => {
-                nukeOverlay.classList.add('open');
-            });
 
             nukeCancel.addEventListener('click', () => {
                 nukeOverlay.classList.remove('open');
@@ -2864,8 +3084,8 @@
                 // Wipe all notes
                 Object.keys(notes).forEach(k => delete notes[k]);
                 persistNotes();
-                // Remove has-note class from all pencil buttons
-                document.querySelectorAll('.note-pencil.has-note').forEach(btn => {
+                // Remove has-note class from all pencil buttons (detail, callout, section)
+                document.querySelectorAll('.note-pencil.has-note, .section-note-pencil.has-note').forEach(btn => {
                     btn.classList.remove('has-note');
                 });
                 nukeOverlay.classList.remove('open');
@@ -3089,7 +3309,7 @@
             }
 
             function syncPencilState(path, hasNote) {
-                document.querySelectorAll('.note-pencil').forEach(btn => {
+                document.querySelectorAll('.note-pencil, .section-note-pencil').forEach(btn => {
                     if (btn.getAttribute('data-path') === path) {
                         if (hasNote) {
                             btn.classList.add('has-note');
@@ -3101,8 +3321,9 @@
             }
 
             function navigateToNote(path) {
-                // Find the pencil button for this path
-                const pencil = document.querySelector('.note-pencil[data-path="' + path.replace(/"/g, '\\"') + '"]');
+                // Find the pencil button for this path (detail, callout, or section)
+                const escaped = path.replace(/"/g, '\\"');
+                const pencil = document.querySelector('.note-pencil[data-path="' + escaped + '"], .section-note-pencil[data-path="' + escaped + '"]');
                 if (!pencil) return;
 
                 // Open the section if closed
